@@ -1,0 +1,70 @@
+body {
+    color: #222;
+}
+#fretboard {
+    position: relative;
+    border: 3px solid #555;
+    height: 320px;
+    background-color: burlywood;
+}
+
+#fretboard .fret {
+    position: relative;
+    height: 100%;
+    width: 100px;
+}
+
+#fretboard .string {
+    width: 100%;
+    position: absolute;
+    opacity: 0.6;
+    color: #000;
+    height: 3px;
+}
+
+#fretboard .string-6 {
+    top: 10px;
+}
+#fretboard .string-5 {
+    top: 55px;
+}
+#fretboard .string-4 {
+    top: 105px;
+}
+#fretboard .string-3 {
+    top: 150px;
+}
+#fretboard .string-2 {
+    top: 200px;
+}
+#fretboard .string-1 {
+    top: 248px;
+}
+
+#fretboard .fret:not(:last-child) {
+    border-right: 8px solid #666;
+}
+
+#fretboard .fret .note {
+    border: 1px solid #222;
+    border-radius: 12px;
+    margin: 5px;
+    background-color: #fff;
+    z-index: 999;
+}
+
+#fretboard .fret .marker {
+    position: absolute;
+    z-index: 0;
+}
+#fretboard .fret .marker .circle {
+    height: 40px;
+    width: 40px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 40px;
+}
+
+#fretboard .fret .note:hover {
+    background-color: #4d750f;
+    color: #fff;
+}
