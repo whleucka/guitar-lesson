@@ -55,9 +55,9 @@
                             <input type="number" onInput="setBPM(event)" id="bpm" value="40" min="10" max="120" class="form-control">
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <li id="random-notes" class="list-group-item" style="display: none;">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="toggle-random-note" checked="">
+                            <input class="form-check-input" type="checkbox" id="toggle-random-note">
                             <label class="form-check-label" for="toggle-random-note">Random note</label>
                         </div>
                         <div>

@@ -77,7 +77,7 @@ body {
 }
 
 #bpm {
-    width: 40px;
+    max-width: 100px;
 }
 
 #random-note {

@@ -113,7 +113,9 @@ const toggleMetronome = (event) => {
     const checkbox = event.currentTarget;
     if (checkbox.checked) {
         startMetronome();
+        document.getElementById("random-notes").style.display = "block";
     } else {
         stopMetronome();
+        document.getElementById("random-notes").style.display = "none";
     }
 }
