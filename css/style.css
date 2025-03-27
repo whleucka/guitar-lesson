@@ -22,7 +22,7 @@ body {
     width: 120px;
 }
 
-#fretboard .string {
+#fretboard .strings {
     width: 100%;
     position: absolute;
     opacity: 0.6;
@@ -30,22 +30,22 @@ body {
     height: 3px;
 }
 
-#fretboard .string-6 {
+#fretboard .strings.string-6 {
     top: 20px;
 }
-#fretboard .string-5 {
+#fretboard .strings.string-5 {
     top: 70px;
 }
-#fretboard .string-4 {
+#fretboard .strings.string-4 {
     top: 115px;
 }
-#fretboard .string-3 {
+#fretboard .strings.string-3 {
     top: 165px;
 }
-#fretboard .string-2 {
+#fretboard .strings.string-2 {
     top: 210px;
 }
-#fretboard .string-1 {
+#fretboard .strings.string-1 {
     top: 260px;
 }
 
@@ -59,6 +59,10 @@ body {
     margin: 5px;
     background-color: #fff;
     z-index: 999;
+}
+#fretboard .fret .note.active {
+    background-color: limegreen;
+    color: #fff;
 }
 
 #fretboard .fret .marker {
@@ -74,4 +78,8 @@ body {
 
 #bpm {
     width: 40px;
+}
+
+#random-note {
+    font-size: 4rem;
 }

@@ -15,7 +15,7 @@
         <h1>Guitar Lesson</h1>
         <section id="fretboard" class="mt-3 d-flex justify-content-around align-items-center">
             <?php foreach ($strings as $i => $string): ?>
-                <hr class="string string-<?= $i + 1 ?>">
+                <hr class="strings string-<?= $i + 1 ?>">
             <?php endforeach ?>
             <?php for ($i = 0; $i < $fret_count; $i++): ?>
                 <div class="fret <?= ($i == 0 ? 'flex-grow-1' : '') ?> d-flex flex-column justify-content-center align-items-center">
@@ -30,7 +30,7 @@
                     <?php foreach ($strings as $j => $string):
                         $note_index = array_search($string, $notes);
                         $idx = ($note_index + $i) % count($notes); ?>
-                        <button class="btn note" data-label="<?= $notes[$idx] ?>"><?= $notes[$idx] ?></button>
+                        <button class="btn note" data-string="<?=$j+1?>" data-label="<?= $notes[$idx] ?>"><?= $notes[$idx] ?></button>
                     <?php endforeach ?>
                 </div>
             <?php endfor ?>
@@ -54,6 +54,22 @@
                             <span class="input-group-text">BPM</span>
                             <input type="number" onInput="setBPM(event)" id="bpm" value="40" min="10" max="120" class="form-control">
                         </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="toggle-random-note" checked="">
+                            <label class="form-check-label" for="toggle-random-note">Random note</label>
+                        </div>
+                        <div>
+                            <span id="random-note"></span>
+                        </div>
+                        <div class="mt-2">Highlight note on strings</div>
+                        <?php foreach ($strings as $i => $string): ?>
+                            <div class="form-check form-check-inline mt-2">
+                            <input class="form-check-input" type="checkbox" id="string-<?=6 - $i?>" checked="">
+                                <label class="form-check-label" for="string-<?=6 - $i?>"><?=$string?></label>
+                            </div>
+                        <?php endforeach ?>
                     </li>
                 </ul>
             </div>
