@@ -61,7 +61,7 @@
                         </div>
                         <div class="mt-2 text-secondary fw-bold">Notes</div>
                         <div class="form-check form-check-inline mt-2">
-                            <input class="form-check-input" type="checkbox" id="toggle-random-note" checked="">
+                            <input class="form-check-input" type="checkbox" id="toggle-random-note">
                             <label class="form-check-label" for="toggle-random-note">Random note</label>
                         </div>
                         <div class="form-check form-check-inline">
