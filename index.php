@@ -56,11 +56,27 @@
                         </div>
                     </li>
                     <li id="random-notes" class="list-group-item" style="display: none;">
-                        <div class="form-check form-check-inline">
+                        <div>
+                            <span id="random-note"></span>
+                        </div>
+                        <div class="mt-2 text-secondary fw-bold">Notes</div>
+                        <div class="form-check form-check-inline mt-2">
                             <input class="form-check-input" type="checkbox" id="toggle-random-note" checked="">
                             <label class="form-check-label" for="toggle-random-note">Random note</label>
                         </div>
                         <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="toggle-sharps" checked="">
+                            <label class="form-check-label" for="toggle-sharps">Sharps and flats</label>
+                        </div>
+                        <div class="mt-2 text-secondary fw-bold">Strings</div>
+                        <?php foreach ($strings as $i => $string): ?>
+                            <div class="form-check form-check-inline mt-2">
+                            <input class="form-check-input" type="checkbox" id="string-<?=6 - $i?>" checked="">
+                                <label class="form-check-label" for="string-<?=6 - $i?>"><?=$string?></label>
+                            </div>
+                        <?php endforeach ?>
+                        <br>
+                        <div class="form-check form-check-inline mt-2">
                             <input class="form-check-input" type="checkbox" id="toggle-random-string">
                             <label class="form-check-label" for="toggle-random-note">Random string</label>
                         </div>
@@ -68,16 +84,6 @@
                             <input class="form-check-input" type="checkbox" id="toggle-alternate-strings">
                             <label class="form-check-label" for="toggle-alternate-strings">Ascend & decend strings</label>
                         </div>
-                        <div>
-                            <span id="random-note"></span>
-                        </div>
-                        <div class="mt-2">Strings</div>
-                        <?php foreach ($strings as $i => $string): ?>
-                            <div class="form-check form-check-inline mt-2">
-                            <input class="form-check-input" type="checkbox" id="string-<?=6 - $i?>" checked="">
-                                <label class="form-check-label" for="string-<?=6 - $i?>"><?=$string?></label>
-                            </div>
-                        <?php endforeach ?>
                     </li>
                 </ul>
             </div>

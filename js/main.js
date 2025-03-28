@@ -1,7 +1,7 @@
 const bpm = document.querySelector("#bpm");
 const metronome = document.querySelector("#metronome");
 const random_note = document.querySelector("#random-note");
-const metronome_sound = new Audio('sounds/metronome.mp3');
+const metronome_sound = new Audio('sounds/metronome_fast.mp3');
 let metronome_interval = null;
 const strings = [
     'E',
@@ -84,6 +84,11 @@ const showRandomNote = () => {
     const random_index = Math.floor(Math.random() * 1000);
     const note_index = random_index % notes.length;
     const note = notes[note_index];
+    const sharps_flats = document.querySelector("#toggle-sharps").checked;
+
+    if (!sharps_flats && (note.includes("♯") || note.includes("♭"))) {
+        return showRandomNote();
+    }
 
     if (note == current_random) {
         return showRandomNote();
