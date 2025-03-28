@@ -69,7 +69,7 @@
                             <label class="form-check-label" for="toggle-sharps">Sharps and flats</label>
                         </div>
                         <div class="mt-2 text-secondary fw-bold">Strings</div>
-                        <?php foreach ($strings as $i => $string): ?>
+                        <?php foreach ($r_strings as $i => $string): ?>
                             <div class="form-check form-check-inline mt-2">
                             <input class="form-check-input" type="checkbox" id="string-<?=6 - $i?>" checked="">
                                 <label class="form-check-label" for="string-<?=6 - $i?>"><?=$string?></label>

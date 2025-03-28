@@ -10,6 +10,14 @@ $strings = [
     'A',
     'E',
 ];
+$r_strings = [
+    'E',
+    'A',
+    'D',
+    'G',
+    'B',
+    'E',
+];
 
 $notes = [
     'A',
