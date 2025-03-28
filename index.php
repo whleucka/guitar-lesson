@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="toggle-alternate-strings">
-                            <label class="form-check-label" for="toggle-alternate-strings">Alternate between strings</label>
+                            <label class="form-check-label" for="toggle-alternate-strings">Ascend & decend strings</label>
                         </div>
                         <div>
                             <span id="random-note"></span>
