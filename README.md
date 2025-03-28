@@ -5,7 +5,7 @@ I created this application to help me learn the guitar fretboard.
 
 Check it out at <a href='https://guitar.williamhleucka.com/'>guitar.williamhleucka.com</a>
 
-![image](https://github.com/user-attachments/assets/64f12ac7-5bab-4a3c-aebc-efe5435ec401)
+![image](https://github.com/user-attachments/assets/8de32f8c-ad52-45dc-b917-16a0d6b018a0)
 
 ### Getting started
 
