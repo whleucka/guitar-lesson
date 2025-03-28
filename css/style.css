@@ -3,11 +3,11 @@
 body {
     font-family: "Noto Sans", sans-serif;
     color: #222;
-    min-width: 1100px;
+    min-width: 1300px;
 }
 
 #fretboard {
-    max-width: 1600px;
+    width: 100%;
     position: relative;
     border: 3px solid #555;
     height: 320px;
@@ -50,7 +50,7 @@ body {
 }
 
 #fretboard .fret:not(:last-child) {
-    border-right: 8px solid #666;
+    border-right: 12px solid #666;
 }
 
 #fretboard .fret .note {
@@ -61,8 +61,9 @@ body {
     z-index: 999;
 }
 #fretboard .fret .note.active {
-    background-color: limegreen;
+    background-color: green;
     color: #fff;
+    font-weight: 700;
 }
 
 #fretboard .fret .marker {
@@ -81,5 +82,5 @@ body {
 }
 
 #random-note {
-    font-size: 4rem;
+    font-size: 5rem;
 }
