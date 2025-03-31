@@ -1,6 +1,6 @@
 <ul class="list-group">
     <li class="list-group-item">
-        <p class="fw-bold"><u>Notes enabled</u></p>
+        <p><u>Notes enabled</u></p>
         <div class="d-flex flex-column">
             <?php foreach ($notes as $i => $note): ?>
                 <div class="form-check form-check-inline">
