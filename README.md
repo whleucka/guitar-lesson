@@ -2,15 +2,6 @@
 
 I created this application to help me learn the guitar fretboard.
 
+I use it here: <a href='https://guitar.williamhleucka.com/'>guitar.williamhleucka.com</a>
 
-Check it out at <a href='https://guitar.williamhleucka.com/'>guitar.williamhleucka.com</a>
-
-![image](https://github.com/user-attachments/assets/8de32f8c-ad52-45dc-b917-16a0d6b018a0)
-
-### Getting started
-
-Running the application:
-
-```bash
-php -S localhost:8000
-```
+![image](https://github.com/user-attachments/assets/74c1fa00-1154-4298-aa93-84b47002af6a)
