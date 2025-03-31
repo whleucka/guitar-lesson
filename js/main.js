@@ -120,8 +120,9 @@ const testMe = () => {
         } else {
             incorrect++;
         }
-        let pct = (correct / (correct + incorrect)) * 100;
-        document.getElementById("grade").innerHTML = `Your score: ${correct} / ${incorrect} (${pct.toFixed(1)}%)`;
+        let answered = correct + incorrect;
+        let pct = (correct / answered) * 100;
+        document.getElementById("grade").innerHTML = `Your score: ${correct} / ${answered} (${pct.toFixed(1)}%)`;
         activateNotes(random_note, result);
     }, interval);
 }
