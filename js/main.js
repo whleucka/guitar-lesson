@@ -4,6 +4,7 @@ let bpm = 10;
 
 let test_timeout = null;
 let test_me = false;
+let last_note = null;
 let answer_string = null;
 let answer_note = null;
 let correct = 0;
@@ -84,7 +85,12 @@ const metronomeSound = () => {
 const randomNote = () => {
     const selected_notes = notes.filter((note,i) => document.getElementById(`note-${i}`).checked);
     const note_idx = Math.floor(Math.random() * selected_notes.length);
-    return selected_notes[note_idx];
+    const new_note = selected_notes[note_idx]
+    if (new_note != last_note) {
+        last_note = new_note;
+        return new_note;
+    }
+    return randomNote();
 }
 
 const deactivateNotes = () => {
