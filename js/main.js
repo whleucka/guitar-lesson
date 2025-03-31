@@ -2,7 +2,8 @@ let metronome_playback = false;
 let metronome_interval = null;
 let bpm = 10;
 
-let test_me = true;
+let test_timeout = null;
+let test_me = false;
 let answer_string = null;
 let answer_note = null;
 let correct = 0;
@@ -16,8 +17,14 @@ const setAnswer = (e) => {
 
 const toggleTestMe = (e) => {
     test_me = e.currentTarget.checked;
-    if (!test_me) {
+    if (test_me) {
+        startMetronome();
+    } else {
+        clearTimeout(test_timeout);
+        deactivateNotes();
         document.getElementById("test-note").innerHTML = '';
+        document.getElementById("grade").innerHTML = '';
+        correct = incorrect = 0;
     }
 }
 
@@ -75,8 +82,9 @@ const metronomeSound = () => {
 }
 
 const randomNote = () => {
-    const note_idx = Math.floor(Math.random() * notes.length);
-    return notes[note_idx];
+    const selected_notes = notes.filter((note,i) => document.getElementById(`note-${i}`).checked);
+    const note_idx = Math.floor(Math.random() * selected_notes.length);
+    return selected_notes[note_idx];
 }
 
 const deactivateNotes = () => {
@@ -105,13 +113,15 @@ const testMe = () => {
     const interval = Math.floor(6E4 / bpm * delay);
 
     document.getElementById("test-note").innerHTML = random_note;
-    setTimeout(() => {
+    test_timeout = setTimeout(() => {
         const result = random_note == answer_note;
         if (result) {
             correct++;
         } else {
             incorrect++;
         }
+        let pct = (correct / (correct + incorrect)) * 100;
+        document.getElementById("grade").innerHTML = `Your score: ${correct} / ${incorrect} (${pct.toFixed(1)}%)`;
         activateNotes(random_note, result);
     }, interval);
 }

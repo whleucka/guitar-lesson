@@ -1,6 +1,10 @@
 <?php
 
 $fret_count = 13;
+
+if (isset($_POST['fret_count'])) {
+    $fret_count = intval($_POST['fret_count']);
+}
 //$fret_count = 25;
 
 $strings = [

@@ -3,7 +3,7 @@
 body {
     font-family: "Noto Sans", sans-serif;
     color: #222;
-    min-width: 1300px;
+    width: 100%;
 }
 
 .nav-tabs {
@@ -11,6 +11,7 @@ body {
 }
 
 #fretboard {
+    overflow: auto;
     width: 100%;
     position: relative;
     border: 3px solid #555;
@@ -60,23 +61,28 @@ body {
 #fretboard .strings.string-1 {
     top: 260px;
 }
-
+#fretboard .fret .note:hover {
+    opacity: 1;
+}
 #fretboard .fret .note {
     border: 1px solid #222;
     border-radius: 12px;
     margin: 5px;
     background-color: #fff;
     z-index: 999;
+    opacity: 0.8;
 }
 #fretboard .fret .note.active {
     background-color: green;
     color: #fff;
     font-weight: 700;
+    opacity: 1;
 }
 #fretboard .fret .note.inactive {
     background-color: red;
     color: #fff;
     font-weight: 700;
+    opacity: 1;
 }
 #fretboard .fret .marker {
     position: absolute;
@@ -93,6 +99,10 @@ body {
     max-width: 100px;
 }
 
+#fret-count {
+    max-width: 50px;
+}
+
 #test-note {
-    font-size: 5rem;
+    font-size: 7rem;
 }

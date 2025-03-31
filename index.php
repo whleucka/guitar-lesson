@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <section class="p-2">
+    <section class="p-2 container-fluid">
         <h1>Guitar Lesson</h1>
         <?php include_once "inc/fretboard.php"; ?>
         <?php include_once "inc/tabs.php"; ?>
