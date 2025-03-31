@@ -1,36 +1,28 @@
-const bpm = document.querySelector("#bpm");
-const metronome = document.querySelector("#metronome");
-const random_note = document.querySelector("#random-note");
-const metronome_sound = new Audio('sounds/metronome_fast.mp3');
+let metronome_playback = false;
 let metronome_interval = null;
-const strings = [
-    'E',
-    'B',
-    'G',
-    'D',
-    'A',
-    'E',
-];
-const notes = [
-    'A',
-    'A♯/B♭',
-    'B',
-    'C',
-    'C♯/D♭',
-    'D',
-    'D♯/E♭',
-    'E',
-    'F',
-    'F♯/G♭',
-    'G',
-    'G♯/A♭',
-];
+let bpm = 10;
 
-let string_index = 6;
-let string_direction = 'down';
+let test_me = true;
+let answer_string = null;
+let answer_note = null;
+let correct = 0;
+let incorrect = 0;
 
-const toggleNoteLabels = (event) => {
-    const checkbox = event.currentTarget;
+/** Listeners */
+const setAnswer = (e) => {
+    if (answer_note == null) answer_note = e.currentTarget.dataset.label;
+    if (answer_string == null) answer_string = e.currentTarget.dataset.string;
+}
+
+const toggleTestMe = (e) => {
+    test_me = e.currentTarget.checked;
+    if (!test_me) {
+        document.getElementById("test-note").innerHTML = '';
+    }
+}
+
+const toggleNoteLabels = (e) => {
+    const checkbox = e.currentTarget;
     if (checkbox.checked) {
         showNoteLabels();
     } else {
@@ -38,6 +30,21 @@ const toggleNoteLabels = (event) => {
     }
 }
 
+const toggleMetronomePlayback = (e) => {
+    metronome_playback = e.currentTarget.checked;
+}
+
+const setBPM = (e) => {
+    const value = e.currentTarget.value;
+    if (isNaN(value) || value <= 0) {
+        console.error("Invalid BPM");
+        return;
+    }
+    bpm = value;
+    startMetronome();
+}
+
+/** Functions **/
 const showNoteLabels = () => {
     document.querySelectorAll(".note")
         .forEach((btn) => {
@@ -52,138 +59,64 @@ const hideNoteLabels = () => {
         });
 }
 
-const setBPM = () => {
-    if (metronome.checked) {
-        stopMetronome();
-        startMetronome();
-    }
-}
-
 const startMetronome = () => {
-    if (isNaN(bpm.value) || bpm.value <= 0) {
-        stopMetronome();
-        console.error("Invalid BPM");
-        return;
-    }
-
-    const interval = Math.floor(6E4 / bpm.value);
-    metronome_interval = setInterval(() => {
-        deactivateNotes();
-        metronome_sound.play();
-        const show_random = document.querySelector("#toggle-random-note").checked;
-        if (show_random) {
-            showRandomNote();
-        } else {
-            hideRandomNote();
-        }
-    }, interval);
-}
-
-const showRandomNote = () => {
-    const current_random = random_note.innerHTML;
-    const random_index = Math.floor(Math.random() * 1000);
-    const note_index = random_index % notes.length;
-    const note = notes[note_index];
-    const sharps_flats = document.querySelector("#toggle-sharps").checked;
-
-    if (!sharps_flats && (note.includes("♯") || note.includes("♭"))) {
-        return showRandomNote();
-    }
-
-    if (note == current_random) {
-        return showRandomNote();
-    }
-
-    random_note.innerHTML = note;
-    random_note.style.display = 'block';
-
-    const random_string = document.querySelector("#toggle-random-string").checked;
-    if (random_string) {
-        randomizeStrings();
-    }
-
-    const alternate_strings = document.querySelector("#toggle-alternate-strings").checked;
-    if (alternate_strings) {
-        alternateStrings();
-    }
-    const delay = 0.7;
-    const interval = Math.floor(6E4 / bpm.value * delay);
-    setTimeout(_ => {
-        activateNotes(note);
-    }, interval);
-}
-
-const alternateStrings = () => {
-    for (let i = 1; i < 7; i++) {
-        if (i == string_index) {
-            document.getElementById(`string-${i}`).checked = true;
-        } else {
-            document.getElementById(`string-${i}`).checked = false;
-        }
-    }
-
-    if (string_index >= 6) string_direction = 'down';
-    if (string_index <= 1) string_direction = 'up';
-
-    if (string_direction == 'up') {
-        string_index++;
-    } else {
-        string_index--;
-    }
-}
-
-const randomizeStrings = () => {
-    const random_string = Math.floor(Math.random() * 6) + 1;
-    for (let i = 1; i < 7; i++) {
-        if (i == random_string) {
-            document.getElementById(`string-${i}`).checked = true;
-        } else {
-            document.getElementById(`string-${i}`).checked = false;
-        }
-    }
-}
-
-const hideRandomNote = () => {
-    random_note.style.display = 'none';
-}
-
-const stopMetronome = () => {
+    const interval = Math.floor(6E4 / bpm);
     clearInterval(metronome_interval);
-    metronome_interval = null;
+    metronome_interval = setInterval(() => {
+        metronomeSound();
+        testMe();
+    }, interval);
 }
 
-const hideRandomNotes = () => {
-    document.getElementById("random-notes").style.display = "none";
+const metronomeSound = () => {
+    if (!metronome_playback) return;
+    const metronome_sound = new Audio('sounds/metronome_fast.mp3');
+    metronome_sound.play();
 }
 
-const showRandomNotes = () => {
-    document.getElementById("random-notes").style.display = "block";
+const randomNote = () => {
+    const note_idx = Math.floor(Math.random() * notes.length);
+    return notes[note_idx];
 }
 
 const deactivateNotes = () => {
     document.querySelectorAll('.note')
-        .forEach(note => note.classList.remove("active"));
+        .forEach(note => note.classList.remove("active", "inactive"));
 }
 
-const activateNotes = (note) => {
-    for (let i = 1; i < 7; i++) {
+const activateNotes = (note, result) => {
+    const effect = result ? 'active' : 'inactive';
+    for (let i = 1; i < strings.length + 1; i++) {
         const string_enabled = document.getElementById(`string-${i}`).checked;
         if (string_enabled) {
             document.querySelectorAll(`.note[data-label="${note}"][data-string="${i}"]`)
-                .forEach(note => note.classList.add("active"));
+                .forEach(note => note.classList.add(effect));
         }
     }
 }
 
-const toggleMetronome = (event) => {
-    const checkbox = event.currentTarget;
-    if (checkbox.checked) {
-        startMetronome();
-        showRandomNotes();
-    } else {
-        stopMetronome();
-        hideRandomNote();
-        hideRandomNotes();
-        deactivateNotes();
-    }
+const testMe = () => {
+    if (!test_me) return;
+    answer_note = null;
+    answer_string = null;
+    deactivateNotes();
+    const random_note = randomNote();
+    const delay = 0.8;
+    const interval = Math.floor(6E4 / bpm * delay);
+
+    document.getElementById("test-note").innerHTML = random_note;
+    setTimeout(() => {
+        const result = random_note == answer_note;
+        if (result) {
+            correct++;
+        } else {
+            incorrect++;
+        }
+        activateNotes(random_note, result);
+    }, interval);
 }
+
+
+
+/** Let it rip */
+startMetronome();

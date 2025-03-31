@@ -1,6 +1,7 @@
 <?php
 
 $fret_count = 13;
+//$fret_count = 25;
 
 $strings = [
     'E',
@@ -8,14 +9,6 @@ $strings = [
     'G',
     'D',
     'A',
-    'E',
-];
-$r_strings = [
-    'E',
-    'A',
-    'D',
-    'G',
-    'B',
     'E',
 ];
 
