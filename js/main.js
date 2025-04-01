@@ -98,7 +98,7 @@ const metronomeSound = () => {
 }
 
 const playScale = () => {
-    if (scale_index == null) return;
+    if (scale == null) return;
     const current = scale[scale_index];
     const [note, string] = current;
     console.log("Now playing ", note, string)
