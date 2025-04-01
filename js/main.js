@@ -10,7 +10,20 @@ let answer_note = null;
 let correct = 0;
 let incorrect = 0;
 
+let scale = null;
+let scale_index = 0;
+
 /** Listeners */
+const toggleScale = (e) => {
+    const index = e.currentTarget.value;
+    document.getElementById("test-me").checked = false;
+    if (index != 'off') {
+        scale = scales[index];
+    } else {
+        scale = null;
+    }
+}
+
 const setAnswer = (e) => {
     if (answer_note == null) answer_note = e.currentTarget.dataset.label;
     if (answer_string == null) answer_string = e.currentTarget.dataset.string;
@@ -22,7 +35,7 @@ const toggleTestMe = (e) => {
         startMetronome();
     } else {
         clearTimeout(test_timeout);
-        deactivateNotes();
+        clearHighlightNotes();
         document.getElementById("test-note").innerHTML = '';
         document.getElementById("grade").innerHTML = '';
         correct = incorrect = 0;
@@ -73,6 +86,7 @@ const startMetronome = () => {
     metronome_interval = setInterval(() => {
         metronomeSound();
         testMe();
+        playScale();
     }, interval);
 }
 
@@ -80,6 +94,9 @@ const metronomeSound = () => {
     if (!metronome_playback) return;
     const metronome_sound = new Audio('sounds/metronome_fast.mp3');
     metronome_sound.play();
+}
+
+const playScale = () => {
 }
 
 const randomNote = () => {
@@ -93,27 +110,31 @@ const randomNote = () => {
     return randomNote();
 }
 
-const deactivateNotes = () => {
+const clearHighlightNotes = () => {
     document.querySelectorAll('.note')
         .forEach(note => note.classList.remove("active", "inactive"));
 }
 
-const activateNotes = (note, result) => {
-    const effect = result ? 'active' : 'inactive';
+const hightlightNoteStrings = (note, result) => {
+    const classname = result ? 'active' : 'inactive';
     for (let i = 1; i < strings.length + 1; i++) {
         const string_enabled = document.getElementById(`string-${i}`).checked;
         if (string_enabled) {
-            document.querySelectorAll(`.note[data-label="${note}"][data-string="${i}"]`)
-                .forEach(note => note.classList.add(effect));
+            highlightNoteString(note, i, classname);
         }
     }
+}
+
+const highlightNoteString = (note, string, classname) => {
+    document.querySelectorAll(`.note[data-label="${note}"][data-string="${i}"]`)
+        .forEach(note => note.classList.add(classname));
 }
 
 const testMe = () => {
     if (!test_me) return;
     answer_note = null;
     answer_string = null;
-    deactivateNotes();
+    clearHighlightNotes();
     const random_note = randomNote();
     const delay = 0.8;
     const interval = Math.floor(6E4 / bpm * delay);
@@ -126,10 +147,10 @@ const testMe = () => {
         } else {
             incorrect++;
         }
-        let answered = correct + incorrect;
-        let pct = (correct / answered) * 100;
+        const answered = correct + incorrect;
+        const pct = (correct / answered) * 100;
         document.getElementById("grade").innerHTML = `Your score: ${correct} / ${answered} (${pct.toFixed(1)}%)`;
-        activateNotes(random_note, result);
+        hightlightNoteStrings(random_note, result);
     }, interval);
 }
 

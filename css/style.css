@@ -106,3 +106,7 @@ body {
 #test-note {
     font-size: 7rem;
 }
+
+#scale-select {
+    max-width: 300px;
+}
