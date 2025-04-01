@@ -21,6 +21,7 @@ const toggleScale = (e) => {
         scale = scales[index];
     } else {
         scale = null;
+        clearHighlightNotes(); 
     }
 }
 
@@ -97,6 +98,20 @@ const metronomeSound = () => {
 }
 
 const playScale = () => {
+    if (scale_index == null) return;
+    const current = scale[scale_index];
+    const [note, string] = current;
+    console.log("Now playing ", note, string)
+
+    clearHighlightNotes();
+
+    if (scale_index + 1 == scale.length - 1) {
+        scale_index = 0;
+    } else {
+        scale_index++;
+    }
+
+    highlightNoteString(note, string, 'active');
 }
 
 const randomNote = () => {
@@ -126,7 +141,7 @@ const hightlightNoteStrings = (note, result) => {
 }
 
 const highlightNoteString = (note, string, classname) => {
-    document.querySelectorAll(`.note[data-label="${note}"][data-string="${i}"]`)
+    document.querySelectorAll(`.note[data-label="${note}"][data-string="${string}"]`)
         .forEach(note => note.classList.add(classname));
 }
 
