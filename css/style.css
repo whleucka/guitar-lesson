@@ -32,7 +32,6 @@ body {
     position: absolute;
     opacity: 0.6;
     color: #000;
-    height: 3px;
 }
 
 #fretboard .fret:not(:last-child) {
@@ -44,21 +43,27 @@ body {
 }
 
 #fretboard .strings.string-6 {
+    height: 1.5px;
     top: 20px;
 }
 #fretboard .strings.string-5 {
+    height: 2px;
     top: 70px;
 }
 #fretboard .strings.string-4 {
+    height: 2.3px;
     top: 115px;
 }
 #fretboard .strings.string-3 {
+    height: 3.1px;
     top: 165px;
 }
 #fretboard .strings.string-2 {
+    height: 3.4px;
     top: 210px;
 }
 #fretboard .strings.string-1 {
+    height: 3.8px;
     top: 260px;
 }
 #fretboard .fret .note:hover {
