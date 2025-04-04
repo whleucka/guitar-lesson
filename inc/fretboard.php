@@ -1,10 +1,19 @@
 <section>
-    <form method="POST">
-        <div class="mt-3 d-flex align-items-center">
+    <form method="POST" class="d-flex align-items-center">
+        <div class="d-flex align-items-center">
             <label>Frets</label>
             <select id="fret-count" class="ms-2 form-control" name="fret_count" onChange="this.form.submit()">
-            <option value="13" <?=($fret_count === 13 ? 'selected' : '')?>>12</option>
-                <option value="25" <?=($fret_count === 25 ? 'selected' : '')?>>24</option>
+                <?php foreach ($fret_counts as $c): ?>
+                    <option value="<?=$c?>" <?=($fret_count === $c ? 'selected' : '')?>><?=$c?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+        <div class="d-flex align-items-center ms-2">
+            <label>Tuning</label>
+            <select id="tuning" class="ms-2 form-control" name="tuning" onChange="this.form.submit()">
+                <?php foreach ($tunings as $t): ?>
+                    <option value="<?=$t?>" <?=($tuning === $t ? 'selected' : '')?>><?=$t?></option>
+                <?php endforeach ?>
             </select>
         </div>
     </form>
@@ -15,7 +24,7 @@
     <?php endforeach ?>
     <?php for ($i = 0; $i < $fret_count; $i++): ?>
         <div class="fret <?= ($i == 0 ? 'first-fret' : '') ?> d-flex flex-column justify-content-center align-items-center">
-            <?php if (in_array($i, [3, 5, 7, 9, 12, 15, 17, 19, 21])): ?>
+            <?php if (in_array($i, $fret_markings)): ?>
                 <div class="d-flex flex-column align-items-center marker">
                     <div class="circle">&nbsp;</div>
                     <?php if ($i === 12): ?>
