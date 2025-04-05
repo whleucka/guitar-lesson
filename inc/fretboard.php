@@ -4,7 +4,7 @@
             <label>Frets</label>
             <select id="fret-count" class="ms-2 form-control" name="fret_count" onChange="this.form.submit()">
                 <?php foreach ($fret_counts as $c): ?>
-                    <option value="<?=$c?>" <?=($fret_count === $c ? 'selected' : '')?>><?=$c?></option>
+                    <option value="<?=$c?>" <?=($fret_count === $c ? 'selected' : '')?>><?=$c-1?></option>
                 <?php endforeach ?>
             </select>
         </div>
