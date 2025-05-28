@@ -93,7 +93,7 @@ const startMetronome = () => {
 
 const metronomeSound = () => {
     if (!metronome_playback) return;
-    const metronome_sound = new Audio('sounds/metronome_fast.mp3');
+    const metronome_sound = new Audio('./sounds/metronome_fast.mp3');
     metronome_sound.play();
 }
 

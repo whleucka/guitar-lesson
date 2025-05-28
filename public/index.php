@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/inc/process_request.php'; ?>
+<?php include __DIR__ . '/../inc/process_request.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +13,8 @@
 <body>
     <section class="p-2 container-fluid">
         <h1>Guitar Lesson</h1>
-        <?php include_once "inc/fretboard.php"; ?>
-        <?php include_once "inc/tabs.php"; ?>
+        <?php include_once __DIR__ . "/../inc/fretboard.php"; ?>
+        <?php include_once __DIR__ . "/../inc/tabs.php"; ?>
     </section>
     <script>
         const strings = <?=json_encode($strings); ?>;
