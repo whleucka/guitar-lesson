@@ -9,6 +9,8 @@ $tunings = [
     "E Standard",
     "Drop D",
     "Drop C",
+    "Drop B",
+    "Drop A",
 ];
 $fret_count = 13; // default
 $tuning = "Standard"; // default
@@ -117,7 +119,7 @@ if (isset($_POST['tuning'])) {
     if (!in_array($_POST['tuning'], $tunings)) exit;
     $tuning = $_POST['tuning'];
     $strings = match($_POST['tuning']) {
-        'Standard' => [
+        'E Standard' => [
             'E',
             'B',
             'G',
@@ -140,6 +142,22 @@ if (isset($_POST['tuning'])) {
             'F',
             'A',
             'D',
+        ],
+        'Drop B' => [
+            'C♯/D♭',
+            'G♯/A♭',
+            'E',
+            'B',
+            'F♯/G♭',
+            'B',
+        ],
+        'Drop A' => [
+            'B',
+            'F♯/G♭',
+            'D',
+            'A',
+            'E',
+            'A',
         ],
     };
 }
