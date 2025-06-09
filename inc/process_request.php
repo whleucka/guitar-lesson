@@ -6,8 +6,9 @@ $fret_counts = [
 ];
 $fret_markings = [3, 5, 7, 9, 12, 15, 17, 19, 21];
 $tunings = [
-    "Standard",
+    "E Standard",
     "Drop D",
+    "Drop C",
 ];
 $fret_count = 13; // default
 $tuning = "Standard"; // default
@@ -129,6 +130,14 @@ if (isset($_POST['tuning'])) {
             'B',
             'G',
             'D',
+            'A',
+            'D',
+        ],
+        'Drop C' => [
+            'C', 
+            'G', 
+            'C',
+            'F',
             'A',
             'D',
         ],
